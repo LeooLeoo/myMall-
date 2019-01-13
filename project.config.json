@@ -1,0 +1,10 @@
+{
+	"miniprogramRoot": "./client",
+	"qcloudRoot": "./server",
+	"setting": {
+		"newFeature": true
+	},
+	"appid": "wxe506827493809fe5",
+	"projectname": "cn-wechat-term2",
+	"condition": {}
+}
