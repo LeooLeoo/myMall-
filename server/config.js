@@ -1,6 +1,6 @@
 const CONF = {
     port: '5757',
-    rootPathname: '',
+  rootPathname: 'https://zqa2dq2k.qcloud.la',
 
     // 微信小程序 App ID
     appId: 'wx33d6dc71c869ee74',
