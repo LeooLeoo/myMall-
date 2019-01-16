@@ -35,4 +35,7 @@ router.post('/message', controllers.message.post)
 
 router.get('/product', controllers.product.list)
 
+
+router.get('/product/:id', controllers.product.detail)
+
 module.exports = router
