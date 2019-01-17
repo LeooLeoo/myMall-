@@ -1,16 +1,21 @@
 const CONF = {
     port: '5757',
-  rootPathname: '',
+    rootPathname: '',
+
+  //腾讯云云 API 密钥
+  qcloudAppId: '1258514560',
+  qcloudSecretId: 'AKIDtZ5A1dULLairtgs0A4iCS0lTxPcbovNj',
+  qcloudSecretKey: 'iBPeS3GFzVnkTRGp8DhJZFhwJhu96peG',
 
     // 微信小程序 App ID
-    appId: 'wx33d6dc71c869ee74',
+  appId: 'wxe506827493809fe5',
 
     // 微信小程序 App Secret
-    appSecret: '',
+  appSecret: '7c395e43d1b93f53a4ab73a99c5d3ae2',
 
     // 是否使用腾讯云代理登录小程序
-    useQcloudLogin: true,
-
+    useQcloudLogin: false,
+    
     /**
      * MySQL 配置，用来存储 session 和用户信息
      * 若使用了腾讯云微信小程序解决方案
@@ -30,9 +35,9 @@ const CONF = {
          * 地区简称
          * @查看 https://cloud.tencent.com/document/product/436/6224
          */
-        region: 'ap-guangzhou',
+        region: 'ap-shanghai',
         // Bucket 名称
-        fileBucket: 'qcloudtest',
+        fileBucket: 'product-1258460918',
         // 文件夹
         uploadFolder: ''
     },
