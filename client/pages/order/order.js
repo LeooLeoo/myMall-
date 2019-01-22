@@ -1,11 +1,47 @@
-// pages/order/order.js
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    orderList: [
+      {
+        id: 0,
+        list: [{
+          count: 1,
+          image: '/images/user-sel.png ',
+          name: '商品1',
+          price: 50.5,
+        }]
+      },
+      {
+        id: 1,
+        list: [{
+          count: 1,
+          image: '/images/user-sel.png ',
+          name: '商品1',
+          price: 50.5,
+        },
+        {
+          count: 1,
+          image: '/images/user-sel.png ',
+          name: '商品2',
+          price: 50.5,
+        }
+        ]
+      },
+      {
+        id: 2,
+        list: [{
+          count: 1,
+          image: '/images/user-sel.png',
+          name: '商品2',
+          price: 50.5,
+        }]
+      }
+    ], // 订单列表静态数据
   },
 
   /**
@@ -26,7 +62,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    app.checkSession({
+      success: ({ userInfo }) => {
+        this.setData({
+          userInfo
+        })
+      }
+    })
   },
 
   /**

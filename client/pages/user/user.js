@@ -1,8 +1,8 @@
 // pages/user/user.js
-const qcloud = require("../../vendor/wafer2-client-sdk/index.js")
-const config = require("../../config.js")
-Page({
+const app = getApp()
 
+
+Page({
   /**
    * 页面的初始数据
    */
@@ -12,6 +12,19 @@ Page({
     //   nickName: "优达学城",
     //   avatarUrl: "", // 头像 URL 地址
     // }, // 虚拟数据
+  }, 
+  onTapAddress() {
+    wx.showToast({
+      icon: 'none',
+      title: '此功能暂未开放'
+    })
+  },
+
+  onTapKf() {
+    wx.showToast({
+      icon: 'none',
+      title: '此功能暂未开放'
+    })
   },
 
   /**
@@ -19,21 +32,21 @@ Page({
    */
   onLoad: function (options) {
 
-  },
+  }, 
 
-  onTapLogin: function (){
-    qcloud.setLoginUrl(config.service.loginUrl)
-    qcloud.login({
-      success: result=>{
-        console.log("success")
-        console.log(result)
-      },
-      fail: result => {
-        console.log("fail")
-        console.log(result)
+  
+
+  onTapLogin() {
+    app.login({
+      success: ({userInfo}) => {
+        this.setData({
+          userInfo
+        })
       }
     })
-  },
+  }, 
+    
+    
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -46,7 +59,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    app.checkSession({
+      success: ({ userInfo }) => {
+        this.setData({
+          userInfo
+        })
+      }
+    })
   },
 
   /**
