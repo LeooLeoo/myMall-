@@ -41,6 +41,6 @@ router.get('/product/:id', controllers.product.detail)
 
 //创建订单 POST指令 上传订单数据到数据库
 router.post("/order", validationMiddleware, controllers.order.add)
-
-
+//显示已购买订单 get指令
+router.get("/order", validationMiddleware, controllers.order.list)
 module.exports = router
