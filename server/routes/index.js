@@ -45,7 +45,7 @@ router.post("/order", validationMiddleware, controllers.order.add)
 router.get("/order", validationMiddleware, controllers.order.list)
 
 //商品添加至购物车列表
-router.put("/trolley", validationMiddleware, controllers.order.add)
+router.put("/trolley", validationMiddleware, controllers.trolley.add)
 
 
 

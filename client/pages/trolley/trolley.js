@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userInfo: null,
     trolleyList: [{
       id: 1,
       name: '商品1',
