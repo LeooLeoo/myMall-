@@ -48,5 +48,9 @@ router.get("/order", validationMiddleware, controllers.order.list)
 router.put("/trolley", validationMiddleware, controllers.trolley.add)
 
 
+// 获取购物车商品列表
+//接着请去置空trolley.js中的虚拟数据，然后调用api获取数据
+router.get('/trolley', validationMiddleware, controllers.trolley.list)
+
 
 module.exports = router

@@ -25,7 +25,19 @@ add: async ctx =>{
   ctx.state.data = {}
 
 
-}
+},
+
+//拉取购物车商品列表，构建api
+list: async ctx =>{
+  //通过用户id获取用户信息
+  let user = ctx.state.$wxInfo.userinfo.openId
+  //跨列表融合，将trolley_user和product两张表融合在一起，根据user名字。
+  //接着请去设置路由！获取商品列表
+  //赋值！不然没有数据返回过来，这个api就没有意义！
+  ctx.state.data = await DB.query('SELECT * FROM trolley_user LEFT JOIN product ON trolley_user.id = product.id WHERE trolley_user.user = ?', [user])
+
+},
+
 
 }
 
