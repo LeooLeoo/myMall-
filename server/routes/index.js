@@ -41,6 +41,8 @@ router.get('/product/:id', controllers.product.detail)
 
 //创建订单 POST指令 上传订单数据到数据库
 router.post("/order", validationMiddleware, controllers.order.add)
+
+
 //显示已购买订单 get指令
 router.get("/order", validationMiddleware, controllers.order.list)
 
@@ -51,6 +53,11 @@ router.put("/trolley", validationMiddleware, controllers.trolley.add)
 // 获取购物车商品列表
 //接着请去置空trolley.js中的虚拟数据，然后调用api获取数据
 router.get('/trolley', validationMiddleware, controllers.trolley.list)
+
+
+// 更新购物车商品列表
+router.post('/trolley', validationMiddleware, controllers.trolley.update)
+
 
 
 module.exports = router

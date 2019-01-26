@@ -46,6 +46,7 @@ Page({
       }
     })
   },
+  
   buy() {
     wx.showLoading({
       title: '商品购买中...',

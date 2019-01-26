@@ -10,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userInfo: null,
     orderList: [
       // {
       //   id: 0,
@@ -76,7 +77,9 @@ Page({
         if (!data.code) {
           this.setData({
             orderList: data.data
+            
           })
+          // console.log(orderList)
         } else {
           wx.showToast({
             icon: 'none',

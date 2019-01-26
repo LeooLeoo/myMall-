@@ -61,10 +61,7 @@ Page({
       success: result => {
         wx.hideLoading()
          console.log(result)
-        console.log("+1")
-        wx.showToast({
-          title: '1',
-        })
+        
         let data = result.data
         
         if (!data.code) {
@@ -206,6 +203,8 @@ Page({
       }
     })
   },
+ 
+ 
   //计算选中的商品总价
   calcAccount(trolleyList, trolleyCheckMap) {
     let account = 0
@@ -215,6 +214,114 @@ Page({
 
     return account
   },
+
+
+  //调整商品数量
+  adjustTrolleyProductCount(event) {
+    let trolleyCheckMap = this.data.trolleyCheckMap
+    let trolleyList = this.data.trolleyList
+    let dataset = event.currentTarget.dataset
+    let adjustType = dataset.type
+    let productId = dataset.id
+    let product
+    let index
+
+
+    for (index = 0; index < trolleyList.length; index++) {
+      if (productId === trolleyList[index].id) {
+        product = trolleyList[index]
+        break
+      }
+    }
+
+    if (product) {
+      if (adjustType === 'add') {
+        // 点击加号
+        product.count++
+      } else {
+        // 点击减号
+        if (product.count <= 1) {
+          // 商品数量不超过1，点击减号相当于删除
+          delete trolleyCheckMap[productId]
+          trolleyList.splice(index, 1)
+        } else {
+          // 商品数量大于1
+          product.count--
+        }
+      }
+    }
+
+    // 调整结算总价
+    let trolleyAccount = this.calcAccount(trolleyList, trolleyCheckMap)
+
+    if (!trolleyList.length) {
+      // 当购物车为空，自动同步至服务器
+      this.updateTrolley()
+    }
+
+    this.setData({
+      trolleyAccount,
+      trolleyList,
+      trolleyCheckMap
+    })
+  },
+
+
+  //添加结算按钮
+  onTapPay(){
+    if (!this.data.trolleyAccount) return
+
+    wx.showLoading({
+      title: '结算中...',
+    })
+
+    let trolleyCheckMap = this.data.trolleyCheckMap
+    let trolleyList = this.data.trolleyList
+
+    //使用filter来选出需要付款的商品，双！！将数据转换为布尔值
+    let needToPayProductList = trolleyList.filter(product => {
+      return !!trolleyCheckMap[product.id]
+    })
+
+    // 请求后台
+    qcloud.request({
+      url: config.service.addOrder,
+      login: true,
+      method: 'POST',
+      data: {
+        list: needToPayProductList
+      },
+      success: result => {
+        wx.hideLoading()
+
+        let data = result.data
+
+        if (!data.code) {
+          wx.showToast({
+            title: '结算成功',
+          })
+
+          this.getTrolley()
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: '结算失败',
+          })
+        }
+      },
+      fail: () => {
+        wx.hideLoading()
+
+        wx.showToast({
+          icon: 'none',
+          title: '结算失败',
+        })
+      }
+    })
+
+
+  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
