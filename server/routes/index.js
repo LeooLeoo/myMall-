@@ -58,6 +58,9 @@ router.get('/trolley', validationMiddleware, controllers.trolley.list)
 // 更新购物车商品列表
 router.post('/trolley', validationMiddleware, controllers.trolley.update)
 
+//添加评论,put comment，需要授权登录并调用了add的功能。（转到controllers.comment.js的add）
+router.put('/comment', validationMiddleware, controllers.comment.add)
+
 
 
 module.exports = router

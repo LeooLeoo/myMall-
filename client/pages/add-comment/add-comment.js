@@ -40,7 +40,7 @@ Page({
     console.log(this.data.commentValue)
   },
 
-  //
+  //添加评论 
   addComment(event) {
     let content = this.data.commentValue
     if (!content) return
@@ -49,13 +49,15 @@ Page({
       title: '正在发表评论'
     })
 
-    this.uploadImage(images => {
+    // this.uploadImage(images => {
       qcloud.request({
         url: config.service.addComment,
+        
+         //需要登录
         login: true,
         method: 'PUT',
         data: {
-          images,
+         //images,
           content,
           product_id: this.data.product.id
         },
@@ -72,6 +74,7 @@ Page({
             setTimeout(() => {
               wx.navigateBack()
             }, 1500)
+            //评论成功则自动返回上一个页面，失败时则停留在当前页面
           } else {
             wx.showToast({
               icon: 'none',
@@ -88,7 +91,7 @@ Page({
           })
         }
       })
-    })
+    // })
   },
 
 

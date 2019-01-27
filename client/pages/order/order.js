@@ -11,7 +11,7 @@ Page({
    */
   data: {
     userInfo: null,
-    orderList: [
+    orderList: [], 
       // {
       //   id: 0,
       //   list: [{
@@ -46,7 +46,7 @@ Page({
       //     price: 50.5,
       //   }]
       // }
-    ], // 订单列表静态数据
+    // 订单列表静态数据
   },
 
   onTapLogin() {
