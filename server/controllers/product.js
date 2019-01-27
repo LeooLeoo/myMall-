@@ -4,12 +4,24 @@ module.exports = {
   list: async ctx => {
     ctx.state.data = await DB.query("SELECT * FROM product;")
   },
+
+
   detail: async ctx => {
-    productID = + ctx.params.id 
-    if(!isNaN(productID)){
-      ctx.state.data = (await DB.query("SELECT * FROM product where product.id=?", [productID]))[0]
-    }else{
-      ctx.state.data = {}
+    let productId = + ctx.params.id
+    let product
+
+    if (!isNaN(productId)) {
+      product = (await DB.query('select * from product where product.id = ?', [productId]))[0]
+    } else {
+      product = {}
     }
-    }
+    //获取评论的数量
+    product.commentCount = (await DB.query('SELECT COUNT(id) AS comment_count FROM comment WHERE comment.product_id = ?', [productId]))[0].comment_count || 0
+    //获取第一条评论
+    product.firstComment = (await DB.query('SELECT * FROM comment WHERE comment.product_id = ? LIMIT 1 OFFSET 0', [productId]))[0] || null
+
+    ctx.state.data = product
+  }
+
+    
 }

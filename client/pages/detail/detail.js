@@ -11,6 +11,7 @@ Page({
    */
   data: {
     product: {},
+    haveComment: true,
   },
 
    /*getProduct函数的构建*/
@@ -30,6 +31,7 @@ Page({
         if (!data.code) {
           this.setData({
             product: data.data
+            
           })
         } else {
           setTimeout(() => {
@@ -131,6 +133,17 @@ Page({
 
   },
 
+  //已买评价按钮
+  onTapCommentEntry() {
+    let product = this.data.product
+    console.log(this.data.product)
+    if (this.data.haveComment) {
+      wx.navigateTo({
+        url: `/pages/comment/comment?id=${product.id}&price=${product.price}&name=${product.name}&image=${product.image}`
+      })
+      
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */

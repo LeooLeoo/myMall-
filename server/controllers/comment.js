@@ -13,7 +13,7 @@ module.exports = {
 
     let productId = +ctx.request.body.product_id
     let content = ctx.request.body.content || null
-
+    //因为是put的请去，所以用.body的方法获取数据
     let images = ctx.request.body.images || []
     images = images.join(';;')
 
@@ -35,7 +35,7 @@ module.exports = {
    */
   list: async ctx => {
     let productId = +ctx.request.query.product_id
-
+    //因为是get的请求，所以使用.query来获取数据
     if (!isNaN(productId)) {
       ctx.state.data = await DB.query('select * from comment where comment.product_id = ?', [productId])
     } else {

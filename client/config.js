@@ -47,7 +47,8 @@ var config = {
       // 添加评论
       addComment: `${host}/weapp/comment`,
 
-
+      // 获取评论列表
+      commentList: `${host}/weapp/comment`,
 
 
         

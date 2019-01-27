@@ -58,14 +58,15 @@ Page({
         method: 'PUT',
         data: {
          //images,
-          content,
+          content: content,
           product_id: this.data.product.id
+          
         },
+        
         success: result => {
           wx.hideLoading()
-
+          
           let data = result.data
-
           if (!data.code) {
             wx.showToast({
               title: '发表评论成功'
@@ -76,6 +77,7 @@ Page({
             }, 1500)
             //评论成功则自动返回上一个页面，失败时则停留在当前页面
           } else {
+           
             wx.showToast({
               icon: 'none',
               title: '发表评论失败'
@@ -84,7 +86,7 @@ Page({
         },
         fail: () => {
           wx.hideLoading()
-
+          console.log(this.data)
           wx.showToast({
             icon: 'none',
             title: '发表评论失败'
