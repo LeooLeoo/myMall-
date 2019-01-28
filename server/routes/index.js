@@ -61,6 +61,7 @@ router.post('/trolley', validationMiddleware, controllers.trolley.update)
 //添加评论,put comment，需要授权登录并调用了add的功能。（转到controllers.comment.js的add）
 router.put('/comment', validationMiddleware, controllers.comment.add)
 
-
+// 获取评论列表
+router.get('/comment', controllers.comment.list)
 
 module.exports = router

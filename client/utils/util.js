@@ -1,3 +1,5 @@
+
+//时间处理函数
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -6,6 +8,7 @@ const formatTime = date => {
   const minute = date.getMinutes()
   const second = date.getSeconds()
 
+//组装成需要的时间格式
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 

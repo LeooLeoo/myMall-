@@ -34,6 +34,7 @@ Page({
   },
 
   getCommentList(id) {
+    //get请求中传入商品id
     qcloud.request({
       url: config.service.commentList,
       data: {
@@ -41,11 +42,15 @@ Page({
       },
       success: result => {
         let data = result.data
+        console.log(data)
+        console.log(data.data)
         if (!data.code) {
           this.setData({
             commentList: data.data.map(item => {
               let itemDate = new Date(item.create_time)
+              //根据返回的数据创建一个新的时间对象
               item.createTime = _.formatTime(itemDate)
+              //将这个时间对象传入到util.js的 时间处理函数中
               item.images = item.images ? item.images.split(';;') : []
               return item
             })
