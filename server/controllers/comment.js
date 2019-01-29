@@ -16,6 +16,7 @@ module.exports = {
     //因为是put的请去，所以用.body的方法获取数据
     let images = ctx.request.body.images || []
     images = images.join(';;')
+    //不建议在数据库中直接储存一个列表，因此使用双逗号将图像列表中的链接连接起来，构成一个较长的string
 
     //执行数据库插入语句
     if (!isNaN(productId)) {

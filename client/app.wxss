@@ -1,6 +1,6 @@
 /**app.wxss**/
 page {
-  background: #f9f9f9;
+  background: #7F2C5D;
 }
 
 .bg {
